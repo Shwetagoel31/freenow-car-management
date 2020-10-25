@@ -10,6 +10,7 @@ import com.freenow.carmgmt.exception.EntityNotFoundException;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ public class DriverServiceImpl implements IDriverService
     private static final Logger LOG = LoggerFactory.getLogger(DriverServiceImpl.class);
 
     private final IDriverRepository driverRepository;
-
+    
 
     public DriverServiceImpl(final IDriverRepository driverRepository)
     {
