@@ -8,7 +8,6 @@ public class DriverNotOnlineException extends Exception
 {
     static final long serialVersionUID = -3387516993334229948L;
 
-
     public DriverNotOnlineException(String message)
     {
         super(message);
