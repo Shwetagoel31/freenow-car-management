@@ -61,7 +61,8 @@ public class CarDO
 
     private String manufacturerName;
     
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "carDO")    
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "carDO") 
+    @JsonIgnoreProperties("carDO")
     private DriverDO driver;
 
     public DriverDO getDriver()

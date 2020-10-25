@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.freenow.carmgmt.domainvalue.GeoCoordinate;
 import com.freenow.carmgmt.domainvalue.OnlineStatus;
 
@@ -62,6 +63,7 @@ public class DriverDO
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id", referencedColumnName = "id")   
+    @JsonIgnoreProperties("driver")
     private CarDO carDO;
 
     public CarDO getCarDO()
