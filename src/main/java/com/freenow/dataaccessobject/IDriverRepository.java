@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.freenow.domainobject.CarDO;
 import com.freenow.domainobject.DriverDO;
@@ -13,6 +14,7 @@ import com.freenow.domainvalue.OnlineStatus;
  * Database Access Object for driver table.
  * <p/>
  */
+@Repository
 public interface IDriverRepository extends CrudRepository<DriverDO, Long>
 {
 

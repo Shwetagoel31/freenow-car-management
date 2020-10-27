@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.freenow.domainvalue.GeoCoordinate;
-import com.freenow.domainvalue.OnlineStatus;
-
 import javax.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -22,30 +20,10 @@ public class DriverDTO
 
     private GeoCoordinate coordinate;
 
-    private OnlineStatus onlineStatus;
-
-    private CarDTO carDTO;
-
-    public OnlineStatus getOnlineStatus()
-    {
-        return onlineStatus;
-    }
-
-
-    public void setOnlineStatus(OnlineStatus onlineStatus)
-    {
-        this.onlineStatus = onlineStatus;
-    }
-
-
-    public void setCarDTO(CarDTO carDTO)
-    {
-        this.carDTO = carDTO;
-    }
-
 
     private DriverDTO()
-    {}
+    {
+    }
 
 
     private DriverDTO(Long id, String username, String password, GeoCoordinate coordinate)
@@ -54,17 +32,6 @@ public class DriverDTO
         this.username = username;
         this.password = password;
         this.coordinate = coordinate;
-    }
-
-
-    private DriverDTO(Long id, String username, String password, GeoCoordinate coordinate, OnlineStatus onlineStatus, CarDTO carDTO)
-    {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.coordinate = coordinate;
-        this.onlineStatus = onlineStatus;
-        this.carDTO = carDTO;
     }
 
 
@@ -98,37 +65,17 @@ public class DriverDTO
         return coordinate;
     }
 
-
-    public CarDTO getCarDTO()
-    {
-        return carDTO;
-    }
-
     public static class DriverDTOBuilder
     {
         private Long id;
         private String username;
         private String password;
         private GeoCoordinate coordinate;
-        private OnlineStatus onlineStatus;
-        private CarDTO carDTO;
+
 
         public DriverDTOBuilder setId(Long id)
         {
             this.id = id;
-            return this;
-        }
-
-
-        public OnlineStatus getOnlineStatus()
-        {
-            return onlineStatus;
-        }
-
-
-        public DriverDTOBuilder setOnlineStatus(OnlineStatus onlineStatus)
-        {
-            this.onlineStatus = onlineStatus;
             return this;
         }
 
@@ -154,15 +101,9 @@ public class DriverDTO
         }
 
 
-        public void setCarDTO(CarDTO carDTO)
-        {
-            this.carDTO = carDTO;
-        }
-
-
         public DriverDTO createDriverDTO()
         {
-            return new DriverDTO(id, username, password, coordinate, onlineStatus, carDTO);
+            return new DriverDTO(id, username, password, coordinate);
         }
 
     }
