@@ -19,8 +19,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.freenow.carmgmt.domainobject.DriverDO;
-import com.freenow.carmgmt.domainvalue.OnlineStatus;
+import com.freenow.dataaccessobject.IDriverRepository;
+import com.freenow.domainobject.DriverDO;
+import com.freenow.domainvalue.OnlineStatus;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

@@ -13,13 +13,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.freenow.carmgmt.controller.mapper.CarMapper;
-import com.freenow.carmgmt.controller.mapper.DriverMapper;
-import com.freenow.carmgmt.datatransferobject.DriverDTO;
-import com.freenow.carmgmt.domainobject.DriverDO;
-import com.freenow.carmgmt.domainvalue.OnlineStatus;
-import com.freenow.carmgmt.service.car.ICarService;
-import com.freenow.carmgmt.service.driver.IDriverService;
+import com.freenow.controller.DriverController;
+import com.freenow.controller.mapper.CarMapper;
+import com.freenow.controller.mapper.DriverMapper;
+import com.freenow.datatransferobject.DriverDTO;
+import com.freenow.domainobject.DriverDO;
+import com.freenow.domainvalue.OnlineStatus;
+import com.freenow.service.car.ICarService;
+import com.freenow.service.driver.IDriverService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(DriverController.class)

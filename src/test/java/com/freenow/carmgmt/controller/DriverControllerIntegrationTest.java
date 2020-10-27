@@ -14,7 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.freenow.carmgmt.FreeNowCarManagementApplication;
+import com.freenow.FreeNowCarManagementApplication;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK, classes = FreeNowCarManagementApplication.class)

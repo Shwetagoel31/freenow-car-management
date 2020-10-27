@@ -15,10 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.freenow.carmgmt.dataaccessobject.IDriverRepository;
-import com.freenow.carmgmt.domainobject.DriverDO;
-import com.freenow.carmgmt.domainvalue.OnlineStatus;
-import com.freenow.carmgmt.exception.EntityNotFoundException;
+import com.freenow.dataaccessobject.IDriverRepository;
+import com.freenow.domainobject.DriverDO;
+import com.freenow.domainvalue.OnlineStatus;
+import com.freenow.exception.EntityNotFoundException;
+import com.freenow.service.driver.DriverServiceImpl;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {DriverServiceImpl.class})
