@@ -3,7 +3,7 @@ package com.freenow.dataaccessobject;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.freenow.domainobject.CarDO;
@@ -15,7 +15,7 @@ import com.freenow.domainvalue.OnlineStatus;
  * <p/>
  */
 @Repository
-public interface IDriverRepository extends CrudRepository<DriverDO, Long>
+public interface IDriverRepository extends JpaRepository<DriverDO, Long>
 {
 
     List<DriverDO> findByOnlineStatus(OnlineStatus onlineStatus);

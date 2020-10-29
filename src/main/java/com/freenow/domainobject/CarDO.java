@@ -68,13 +68,13 @@ public class CarDO extends BaseDO
     }
 
 
-    public DriverDO getDriver()
+    public DriverDO getDriverDO()
     {
         return driverDO;
     }
 
 
-    public void setDriver(DriverDO driverDO)
+    public void setDriverDO(DriverDO driverDO)
     {
         this.driverDO = driverDO;
     }

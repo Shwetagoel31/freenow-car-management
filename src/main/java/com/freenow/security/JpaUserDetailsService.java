@@ -5,15 +5,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.freenow.dataaccessobject.UserRepository;
+import com.freenow.dataaccessobject.IUserRepository;
 
 @Service
 public class JpaUserDetailsService implements UserDetailsService
 {
     
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
     
-    public JpaUserDetailsService(UserRepository userRepository) {
+    public JpaUserDetailsService(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

@@ -60,13 +60,14 @@ public class DriverDO extends UserDO
     {}
 
 
-    public DriverDO(String username, String password, OnlineStatus onlineStatus)
+    public DriverDO(String username, String password)
     {
         this.username = username;
         this.password = password;
         this.coordinate = null;
         this.dateCoordinateUpdated = null;
-        this.onlineStatus = onlineStatus;
+        this.onlineStatus = OnlineStatus.OFFLINE;
+        this.setDeleted(false);
     }
 
 

@@ -16,15 +16,10 @@ import com.freenow.domainvalue.GeoCoordinate;
 @Component
 public class DriverMapper
 {
-    /*@Autowired
-    private static CarMapper carMapper;*/
 
     public static DriverDO makeDriverDO(DriverDTO driverDTO)
     {
-        /* return new DriverDO(username, password, onlineStatus)
-            (driverDTO.getUsername(), driverDTO.getPassword(), driverDTO.getOnlineStatus());*/
-        // temporary fix
-        return null;
+        return new DriverDO(driverDTO.getUsername(), driverDTO.getPassword());
     }
 
 
@@ -35,8 +30,7 @@ public class DriverMapper
                 .newBuilder()
                 .setId(driverDO.getId())
                 .setPassword(driverDO.getPassword())
-                .setUsername(driverDO.getUsername())
-                .setOnlineStatus(driverDO.getOnlineStatus());
+                .setUsername(driverDO.getUsername());
 
         GeoCoordinate coordinate = driverDO.getCoordinate();
         if (coordinate != null)

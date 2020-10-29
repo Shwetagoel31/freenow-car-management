@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.freenow.domainobject.UserDO;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserDO, Long>
+public interface IUserRepository extends JpaRepository<UserDO, Long>
 {
     Optional<UserDO> findByUsername(String userName);
 }

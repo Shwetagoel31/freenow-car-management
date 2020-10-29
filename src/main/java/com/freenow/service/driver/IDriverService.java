@@ -5,28 +5,32 @@ import java.util.List;
 import com.freenow.domainobject.CarDO;
 import com.freenow.domainobject.DriverDO;
 import com.freenow.domainvalue.OnlineStatus;
-import com.freenow.exception.ConstraintsViolationException;
+import com.freenow.exception.CarAlreadyInUseException;
+import com.freenow.exception.CarSelectDeselectException;
+import com.freenow.exception.DriverNotOnlineException;
 import com.freenow.exception.EntityNotFoundException;
 
 public interface IDriverService
 {
 
-    DriverDO find(Long driverId) throws EntityNotFoundException;
-
-    DriverDO create(DriverDO driverDO) throws ConstraintsViolationException;
-
-    void delete(Long driverId) throws EntityNotFoundException;
-
     void updateLocation(long driverId, double longitude, double latitude) throws EntityNotFoundException;
 
+
     List<DriverDO> find(OnlineStatus onlineStatus);
-    
-    DriverDO save(DriverDO driverDO);
-    
+
+
+    CarDO selectCar(Long driverId, Long carId) throws EntityNotFoundException, DriverNotOnlineException, CarAlreadyInUseException, CarSelectDeselectException;
+
+
+    void deselectCar(Long driverId) throws EntityNotFoundException, CarSelectDeselectException;
+
+
     List<DriverDO> findByUsernameContains(String username);
-    
+
+
     DriverDO findByCarDO(CarDO carDO) throws EntityNotFoundException;
-    
+
+
     List<DriverDO> findByCarDOIn(List<CarDO> carDOs);
 
 }
