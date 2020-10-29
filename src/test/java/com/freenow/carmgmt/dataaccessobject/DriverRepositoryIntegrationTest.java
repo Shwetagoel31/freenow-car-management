@@ -1,6 +1,5 @@
 package com.freenow.carmgmt.dataaccessobject;
 
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,20 +33,24 @@ class DriverRepositoryIntegrationTest
 
     @Autowired
     private IDriverRepository driverRepository;
-    
+
     @BeforeEach
-    void testData() {
-        DriverDO driver = new DriverDO("Anil", "Aa", OnlineStatus.ONLINE);
-        entityManager.persist(driver);
+    void testData()
+    {
+        DriverDO driverDO = new DriverDO("Anil", "Aa");
+        driverDO.setOnlineStatus(OnlineStatus.ONLINE);
+
+        entityManager.persist(driverDO);
         entityManager.flush();
     }
+
 
     @Test
     void givenDriverId_whenFindById_thenReturnDriver()
     {
 
-        DriverDO driver = new DriverDO("Vikas", "ha", OnlineStatus.ONLINE);
-        
+        DriverDO driver = new DriverDO("Vikas", "ha");
+
         entityManager.persist(driver);
         entityManager.flush();
 
@@ -60,13 +63,14 @@ class DriverRepositoryIntegrationTest
 
 
     @Test
-    void whenFindAll_thenReturnAllDrivers() {
-        
+    void whenFindAll_thenReturnAllDrivers()
+    {
+
         Iterable<DriverDO> drivers = driverRepository.findAll();
         List<DriverDO> driversList = new ArrayList<>();
-        
+
         drivers.forEach(d -> driversList.add(d));
-        
+
         assertThat(driversList.size(), is(2));
 
     }

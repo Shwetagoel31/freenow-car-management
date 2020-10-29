@@ -28,34 +28,37 @@ class DriverControllerTest
 {
     @Autowired
     private MockMvc mvc;
-    
+
     @MockBean
     private IDriverService driverService;
-    
+
     @MockBean
     private ICarService carService;
-    
+
     @MockBean
     private CarMapper carMapper;
 
     @Test
     void givenDriver_whenGetDriverById_thenReturnDriver() throws Exception
     {
-        DriverDTO driverDTO = DriverDTO.newBuilder()
-                                    .setUsername("Pramod")
-                                    .setPassword("ha")
-                                    .setId(100l)
-                                    .setOnlineStatus(OnlineStatus.ONLINE)
-                                    .createDriverDTO();
-        
+        DriverDTO driverDTO =
+            DriverDTO
+                .newBuilder()
+                .setUsername("Pramod")
+                .setPassword("ha")
+                .setId(100l)
+                .createDriverDTO();
+
         DriverDO driverDO = DriverMapper.makeDriverDO(driverDTO);
-        
+
         when(driverService.find(100l)).thenReturn(driverDO);
-     
-        mvc.perform(get("/api/v1/drivers/100")
-          .contentType(MediaType.APPLICATION_JSON))
-          .andExpect(status().isOk());
-          
+
+        mvc
+            .perform(
+                get("/api/v1/drivers/100")
+                    .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+
     }
 
 }

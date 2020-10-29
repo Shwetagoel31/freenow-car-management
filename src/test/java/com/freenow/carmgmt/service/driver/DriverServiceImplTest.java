@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.freenow.dataaccessobject.IDriverRepository;
 import com.freenow.domainobject.DriverDO;
 import com.freenow.domainvalue.OnlineStatus;
+import com.freenow.exception.ConstraintsViolationException;
 import com.freenow.exception.EntityNotFoundException;
 import com.freenow.service.driver.DriverServiceImpl;
 
@@ -32,12 +33,12 @@ class DriverServiceImplTest
     private IDriverRepository driverRepository;
 
     @Test
-    void givenDriver_whenSave_thenCreatedSuccessfully()
+    void givenDriver_whenSave_thenCreatedSuccessfully() throws ConstraintsViolationException
     {
-        DriverDO driverDO = new DriverDO("Bahadur", "ha", OnlineStatus.ONLINE);
+        DriverDO driverDO = new DriverDO("Bahadur", "ha");
         when(driverRepository.save(driverDO)).thenReturn(driverDO);
 
-        assertEquals(driverService.save(driverDO), driverDO);
+        assertEquals(driverService.create(driverDO), driverDO);
         verify(driverRepository, times(1)).save(driverDO);
     }
     
