@@ -23,6 +23,7 @@ public class DriverMapper
     {
         /* return new DriverDO(username, password, onlineStatus)
             (driverDTO.getUsername(), driverDTO.getPassword(), driverDTO.getOnlineStatus());*/
+        // temporary fix
         return null;
     }
 
