@@ -33,6 +33,7 @@ import com.freenow.domainobject.CarDO;
 import com.freenow.domainobject.DriverDO;
 import com.freenow.domainvalue.OnlineStatus;
 import com.freenow.exception.CarAlreadyInUseException;
+import com.freenow.exception.CarSelectDeselectException;
 import com.freenow.exception.ConstraintsViolationException;
 import com.freenow.exception.DriverNotOnlineException;
 import com.freenow.exception.EntityNotFoundException;
@@ -48,9 +49,7 @@ import com.freenow.service.driver.IDriverService;
 public class DriverController
 {
 
-    private static final Logger LOG =
-        LoggerFactory
-            .getLogger(DriverController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DriverController.class);
 
     private final IDriverService driverService;
     private final ICarService carService;
@@ -69,18 +68,9 @@ public class DriverController
 
 
     @GetMapping("/{driverId}")
-    public DriverDTO getDriver(@PathVariable long driverId)
-        throws EntityNotFoundException
+    public DriverDTO getDriver(@PathVariable long driverId) throws EntityNotFoundException
     {
-        DriverDO driverDO = driverService.find(driverId);
-        DriverDTO driverDTO = DriverMapper.makeDriverDTO(driverDO);
-        CarDO carDO = driverDO.getCarDO();
-        if(carDO != null) {
-            CarDTO carDTO = carMapper.convertToCarDTO(carDO);
-            driverDTO.setCarDTO(carDTO);
-        }
-        
-        return driverDTO;
+        return DriverMapper.makeDriverDTO(driverService.find(driverId));
     }
 
 
@@ -112,7 +102,7 @@ public class DriverController
             case "RATING":
                 List<CarDO> carDOs = carService.findByRating(Double.parseDouble(value));
                 driverDOs = driverService.findByCarDOIn(carDOs);
-                
+
                 break;
             default:
                 break;
@@ -161,54 +151,19 @@ public class DriverController
 
     @PutMapping("/{driverId}/selectCar/{carId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void selectCar(
-        @PathVariable Long driverId,
-        @PathVariable Long carId)
-        throws EntityNotFoundException, DriverNotOnlineException, CarAlreadyInUseException
+    public CarDTO selectCar(@PathVariable Long driverId, @PathVariable Long carId)
+        throws EntityNotFoundException, DriverNotOnlineException, CarAlreadyInUseException, CarSelectDeselectException
     {
 
-        DriverDO driverDO = driverService.find(driverId);
-        if (driverDO.getOnlineStatus() == OnlineStatus.ONLINE)
-        {
-            CarDO carDO = carService.findById(carId);
-            if (carDO.getDriver() == null)
-            {
-
-                driverDO.setCarDO(carDO);
-
-                driverService.save(driverDO);
-            }
-            else
-            {
-                throw new CarAlreadyInUseException("CarID " + carId + " cannot be selected as it's already in use");
-            }
-        }
-        else
-        {
-            throw new DriverNotOnlineException("Driver's status should be ONLINE to select a car");
-        }
-
+        return carMapper.convertToCarDTO(driverService.selectCar(driverId, carId));
     }
 
 
     @PutMapping("/{driverId}/deSelectCar/{carId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deSelectCar(
-        @PathVariable Long driverId,
-        @PathVariable Long carId)
-        throws EntityNotFoundException, InputMismatchException
+    public void deSelectCar(@PathVariable Long driverId, @PathVariable Long carId) throws EntityNotFoundException, CarSelectDeselectException
     {
 
-        DriverDO driverDO = driverService.find(driverId);
-        CarDO carDO = carService.findById(carId);
-
-        Long selectedCarID = driverDO.getCarDO().getId();
-        if (selectedCarID != carId)
-            throw new InputMismatchException("Cannot deselect provided carID " + carId + " as driver had previously selected " + selectedCarID + " carID");
-
-        driverDO.setCarDO(null);
-
-        driverService.save(driverDO);
-
+        driverService.deselectCar(driverId);
     }
 }

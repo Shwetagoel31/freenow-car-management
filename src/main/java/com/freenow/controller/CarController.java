@@ -1,14 +1,13 @@
 package com.freenow.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,65 +21,71 @@ import org.springframework.web.bind.annotation.RestController;
 import com.freenow.controller.mapper.CarMapper;
 import com.freenow.datatransferobject.CarDTO;
 import com.freenow.domainobject.CarDO;
+import com.freenow.exception.ConstraintsViolationException;
 import com.freenow.exception.EntityNotFoundException;
 import com.freenow.service.car.ICarService;
 
 @RestController
 @RequestMapping("/api/v1/cars")
+@Secured("ADMIN")
 public class CarController
 {
 
     private final ICarService carService;
     private final CarMapper mapper;
-    
+
     @Autowired
-    public CarController(final ICarService carService, final CarMapper mapper) {
+    public CarController(final ICarService carService, final CarMapper mapper)
+    {
         this.carService = carService;
         this.mapper = mapper;
     }
-    
+
+
     @GetMapping
-    public Collection<CarDTO> findAll()
+    public List<CarDTO> findAll()
     {
-        List<CarDTO> carDTOs = new ArrayList<>();
-        Iterable<CarDO> carDOs = carService.findAll();
-        
-        carDOs.forEach(c -> carDTOs.add(mapper.convertToCarDTO(c)));
-        return carDTOs;
+
+        return (carService
+            .findAll()
+            .stream()
+            .map(c -> mapper.convertToCarDTO(c))
+            .collect(Collectors.toList()));
+
     }
 
 
     @GetMapping("/{id}")
-    public CarDO findOne(@PathVariable Long id) throws EntityNotFoundException
+    public CarDTO findOne(@Valid @PathVariable Long id) throws EntityNotFoundException
     {
-        return carService.findById(id);
+        return mapper.convertToCarDTO(carService.find(id));
     }
 
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CarDTO save(@Valid @RequestBody CarDTO carDto)
+    public CarDTO save(@Valid @RequestBody CarDTO carDTO) throws ConstraintsViolationException, EntityNotFoundException
     {
-        CarDO carDo = carService.save(mapper.convertToCarDO(carDto));
-        return mapper.convertToCarDTO(carDo);
+        CarDO carDO = mapper.convertToCarDO(carDTO);
+        return mapper.convertToCarDTO(carService.createCar(carDO));
     }
 
 
     @PutMapping("/{id}")
-    public CarDTO update(@PathVariable Long id, @Valid @RequestBody CarDTO carDto)
+    public CarDTO update(@Valid @PathVariable Long id, @Valid @RequestBody CarDTO carDto)
     {
         CarDO carDo = carService.update(mapper.convertToCarDO(carDto));
         return mapper.convertToCarDTO(carDo);
-            
+
     }
 
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) throws EntityNotFoundException
+    public void delete(@Valid @PathVariable Long id) throws EntityNotFoundException
     {
-        carService.deleteById(id);
-        
+        carService.delete(id);
+
     }
 
 }

@@ -9,8 +9,9 @@ import com.freenow.exception.CarAlreadyInUseException;
 import com.freenow.exception.CarSelectDeselectException;
 import com.freenow.exception.DriverNotOnlineException;
 import com.freenow.exception.EntityNotFoundException;
+import com.freenow.service.IBaseService;
 
-public interface IDriverService
+public interface IDriverService extends IBaseService<DriverDO, Long>
 {
 
     void updateLocation(long driverId, double longitude, double latitude) throws EntityNotFoundException;

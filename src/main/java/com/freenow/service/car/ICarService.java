@@ -6,8 +6,9 @@ import com.freenow.domainobject.CarDO;
 import com.freenow.domainobject.DriverDO;
 import com.freenow.exception.ConstraintsViolationException;
 import com.freenow.exception.EntityNotFoundException;
+import com.freenow.service.IBaseService;
 
-public interface ICarService
+public interface ICarService extends IBaseService<CarDO, Long>
 {
 
     CarDO createCar(CarDO carDo) throws ConstraintsViolationException, EntityNotFoundException;

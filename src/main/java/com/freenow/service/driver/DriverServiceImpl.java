@@ -90,7 +90,7 @@ public class DriverServiceImpl extends BaseServiceImpl<DriverDO, Long> implement
         DriverDO driverDO = find(driverId);
         validateNoCarSelectedAndOnlineStatus(driverDO);
 
-        CarDO carDO = carService.findById(carId);
+        CarDO carDO = carService.find(carId);
         validateNoDriverAssociated(carDO, driverDO);
 
         carDO.setDriverDO(driverDO);
