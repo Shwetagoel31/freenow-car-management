@@ -16,7 +16,8 @@
 	<description>Free Now Car Management</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
+		 <io.springfox.springfox.version>2.9.2</io.springfox.springfox.version>
 	</properties>
 
 	<dependencies>
@@ -24,11 +25,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		
-		<dependency>
+
+		<!--dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -58,11 +59,26 @@
 			<version>30.0-jre</version>
 		</dependency>
 
+		<!--dependency> <groupId>io.springfox</groupId> <artifactId>springfox-boot-starter</artifactId> 
+			<version>3.0.0</version> </dependency -->
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			 <version>${io.springfox.springfox.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			 <version>${io.springfox.springfox.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			
+
 		</dependency>
 	</dependencies>
 

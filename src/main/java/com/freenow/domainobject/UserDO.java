@@ -15,13 +15,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
 
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-public class UserDO extends BaseDO implements UserDetails
+//public class UserDO extends BaseDO implements UserDetails
+public class UserDO extends BaseDO
 {
 
     private static final long serialVersionUID = 1954740989798652773L;
@@ -46,16 +47,16 @@ public class UserDO extends BaseDO implements UserDetails
     @Column(columnDefinition = "boolean default true")
     private boolean accountEnabled = true;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    /*@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     protected Set<RoleDO> roles = new HashSet<>();
-
-
+    
+    
     public UserDO(String userName, Set<RoleDO> authorityList)
     {
         this.username = userName;
         this.roles = authorityList;
-    }
+    }*/
 
 
     public UserDO()
@@ -64,53 +65,53 @@ public class UserDO extends BaseDO implements UserDetails
     }
 
 
-    @Override
+    /*@Override
     public Collection<? extends GrantedAuthority> getAuthorities()
     {
         return getRoles();
     }
-
-
+    
+    
     @Override
     public String getPassword()
     {
         return this.password;
     }
-
-
+    
+    
     @Override
     public String getUsername()
     {
         return this.username;
     }
-
-
+    
+    
     @Override
     public boolean isAccountNonExpired()
     {
         return !accountExpired;
     }
-
-
+    
+    
     @Override
     public boolean isAccountNonLocked()
     {
         return !accountLocked;
     }
-
-
+    
+    
     @Override
     public boolean isCredentialsNonExpired()
     {
         return !credentialsExpired;
     }
-
-
+    
+    
     @Override
     public boolean isEnabled()
     {
         return accountEnabled;
-    }
+    }*/
 
 
     public boolean isAccountExpired()
@@ -161,16 +162,16 @@ public class UserDO extends BaseDO implements UserDetails
     }
 
 
-    public Set<RoleDO> getRoles()
+    /*public Set<RoleDO> getRoles()
     {
         return roles;
     }
-
-
+    
+    
     public void setRoles(Set<RoleDO> roles)
     {
         this.roles = roles;
-    }
+    }*/
 
 
     public void setUsername(String username)
@@ -185,3 +186,4 @@ public class UserDO extends BaseDO implements UserDetails
     }
 
 }
+

@@ -58,8 +58,8 @@ public class DriverDO extends UserDO
 
     public DriverDO()
     {}
-
-
+    
+    
     public DriverDO(String username, String password)
     {
         this.username = username;
@@ -69,14 +69,14 @@ public class DriverDO extends UserDO
         this.onlineStatus = OnlineStatus.OFFLINE;
         this.setDeleted(false);
     }
-
-
+    
+    
     public String getUsername()
     {
         return username;
     }
-
-
+    
+    
     public String getPassword()
     {
         return password;

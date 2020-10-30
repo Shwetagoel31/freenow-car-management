@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.freenow.domainvalue.CarSize;
 import com.freenow.domainvalue.EngineType;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CarDTO
 {
@@ -16,6 +18,7 @@ public class CarDTO
     private Long id;
 
     @NotNull(message = "LicensePlate cannot be null!")
+    @ApiModelProperty(notes = "The License Plate of the Car", required = true)
     private String licensePlate;
 
     @NotNull(message = "SeatCount cannot be null!")

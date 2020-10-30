@@ -49,16 +49,17 @@ class DriverRepositoryIntegrationTest
     void givenDriverId_whenFindById_thenReturnDriver()
     {
 
-        DriverDO driver = new DriverDO("Vikas", "ha");
+        DriverDO driverDO = new DriverDO("Vikas", "ha");
 
-        entityManager.persist(driver);
+        entityManager.persist(driverDO);
         entityManager.flush();
 
         //when
-        Optional<DriverDO> retrievedDriver = driverRepository.findById(driver.getId());
+        Optional<DriverDO> retrievedDriver = driverRepository.findById(driverDO.getId());
 
         //then
-        assertEquals(retrievedDriver.get().getUsername(), driver.getUsername());
+        assertEquals(retrievedDriver.get().getUsername(), driverDO.getUsername());
+
     }
 
 

@@ -19,18 +19,24 @@ public class DriverMapper
 
     public static DriverDO makeDriverDO(DriverDTO driverDTO)
     {
-        return new DriverDO(driverDTO.getUsername(), driverDTO.getPassword());
+        //return new DriverDO(driverDTO.getUsername(), driverDTO.getPassword());
+        return new DriverDO();
     }
 
 
     public static DriverDTO makeDriverDTO(DriverDO driverDO)
     {
-        DriverDTO.DriverDTOBuilder driverDTOBuilder =
+        /*DriverDTO.DriverDTOBuilder driverDTOBuilder =
             DriverDTO
                 .newBuilder()
                 .setId(driverDO.getId())
                 .setPassword(driverDO.getPassword())
-                .setUsername(driverDO.getUsername());
+                .setUsername(driverDO.getUsername());*/
+        
+        DriverDTO.DriverDTOBuilder driverDTOBuilder =
+            DriverDTO
+                .newBuilder()
+                .setId(driverDO.getId());
 
         GeoCoordinate coordinate = driverDO.getCoordinate();
         if (coordinate != null)
