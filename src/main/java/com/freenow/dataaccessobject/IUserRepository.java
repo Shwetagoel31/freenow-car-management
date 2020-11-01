@@ -1,4 +1,4 @@
-package com.freenow.dataaccessobject;
+/*package com.freenow.dataaccessobject;
 
 import java.util.Optional;
 
@@ -12,3 +12,4 @@ public interface IUserRepository extends JpaRepository<UserDO, Long>
 {
     Optional<UserDO> findByUsername(String userName);
 }
+*/

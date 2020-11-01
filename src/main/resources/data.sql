@@ -21,25 +21,25 @@ insert into user (id, date_created, deleted, password, username) values (11, now
 
 -- Create 3 roles
 
-insert into role (id, date_created, deleted, authority) values (1, now(), false, 'ROLE_ADMIN');
-insert into role (id, date_created, deleted, authority) values (2, now(), false, 'ROLE_DRIVER');
+-- insert into role (id, date_created, deleted, authority) values (1, now(), false, 'ROLE_ADMIN');
+-- insert into role (id, date_created, deleted, authority) values (2, now(), false, 'ROLE_DRIVER');
 
 -- Create driver Role Mapping
 
-insert into user_role (user_id, role_id) values (1, 2);
-insert into user_role (user_id, role_id) values (2, 2);
-insert into user_role (user_id, role_id) values (3, 2);
-insert into user_role (user_id, role_id) values (4, 2);
-insert into user_role (user_id, role_id) values (5, 2);
-insert into user_role (user_id, role_id) values (6, 2);
-insert into user_role (user_id, role_id) values (7, 2);
-insert into user_role (user_id, role_id) values (8, 2);
+--insert into user_role (user_id, role_id) values (1, 2);
+--insert into user_role (user_id, role_id) values (2, 2);
+--insert into user_role (user_id, role_id) values (3, 2);
+--insert into user_role (user_id, role_id) values (4, 2);
+--insert into user_role (user_id, role_id) values (5, 2);
+--insert into user_role (user_id, role_id) values (6, 2);
+--insert into user_role (user_id, role_id) values (7, 2);
+--insert into user_role (user_id, role_id) values (8, 2);
 
 -- Create admin Role Mapping
 
-insert into user_role (user_id, role_id) values (9, 1);
-insert into user_role (user_id, role_id) values (10, 1);
-insert into user_role (user_id, role_id) values (11, 1);
+--insert into user_role (user_id, role_id) values (9, 1);
+--insert into user_role (user_id, role_id) values (10, 1);
+--insert into user_role (user_id, role_id) values (11, 1);
 
 -- Create 3 OFFLINE drivers
 

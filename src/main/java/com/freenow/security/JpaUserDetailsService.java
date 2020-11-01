@@ -1,4 +1,4 @@
-package com.freenow.security;
+/*package com.freenow.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,3 +25,4 @@ public class JpaUserDetailsService implements UserDetailsService
     }
 
 }
+*/

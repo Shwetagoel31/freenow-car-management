@@ -1,4 +1,4 @@
-package com.freenow.domainobject;
+/*package com.freenow.domainobject;
 
 import java.util.Set;
 
@@ -66,3 +66,4 @@ public class RoleDO extends BaseDO implements GrantedAuthority
     }
 
 }
+*/
